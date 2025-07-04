@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🍳 MEALBITE🍱 JUNCTION 🍳</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="left-section">
+      <div class="bar-icon" onclick="toggleSidebar()">☰</div>
+      <div class="restaurant-name">🍳 MEALBITE🍱 JUNCTION 🍳</div>
+    </div>
+    <button class="login-btn" onclick="toggleLoginForm()">Login</button>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <a href="#" onclick="closeSidebar()">❌ Close</a>
+    <a href="#menu" onclick="closeSidebarAndScroll('tea-item')">📋 Menu</a>
+    <a href="#order" onclick="closeSidebarAndScroll('order')">🛒 Order</a>
+    <a href="#contact" onclick="closeSidebarAndScroll('contact')">📞 Contact Us</a>
+  </div>
+  <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+  <div id="loginForm" class="login-form">
+    <h3>Login Here</h3>
+    <input type="text" id="loginId" placeholder="Login ID">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button onclick="submitLogin()">Submit</button>
+  </div>
+
+  <div class="menu-section" id="menu">
+    <div class="menu-title">
+      <h1 style="color: #e67e22;">👋 Welcome to <span style="color: #b64011;">MEALBITE🍱</span> Restaurant!</h1>
+      <p style="color: #0c1b7b;">Serving delicious bites made with love and flavor. Explore our menu and treat yourself today! 🍽</p>
+
+      <div class="image-slider">
+         <button class="prev" onclick="slideImage(-1)">❮</button>
+        <img id="sliderImage" src="https://images.squarespace-cdn.com/content/v1/5f9decf1e529e27a4705d448/1744911507826-6VLP8L30R3TMGT21I4ZF/MacBook+Pro+-+29banner-25.png?format=2500w" alt="Restaurant interior with food">
+        <button class="next" onclick="slideImage(1)">❯</button>
+      </div>
+    </div>
+
+    <h2 style="text-align: center; color: #f35212; margin-top: 40px;">Our Specials</h2>
+    <div class="menu-slider">
+      <div class="menu-item" data-item-name="Chicken Tacos" data-item-price="399">🌮 Chicken Tacos - ₹399
+        <img src="https://easychickenrecipes.com/wp-content/uploads/2021/06/featured-chicken-fried-chicken-recipe.jpg" alt="Delicious Chicken Tacos">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Paneer Butter Masala" data-item-price="299">🧀 Paneer Butter Masala - ₹299
+        <img src="https://vegecravings.com/wp-content/uploads/2017/04/paneer-butter-masala-recipe-step-by-step-instructions.jpg" alt="Rich Paneer Butter Masala">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+    <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+
+    </div>
+    <div class="menu-item" data-item-name="Chicken Biryani" data-item-price="249">
+      3. 🍝 Chicken Biryani - ₹249
+      <img src="https://purendesi.in/wp-content/uploads/2024/12/Andhra-Style-Chicken-Biryani.jpg" alt="Flavorful Chicken Biryani">
+      <div class="quantity-controls">
+           <button onclick="updateQuantity(this, -1)">-</button>
+           <span class="quantity">0</span>
+           <button onclick="updateQuantity(this, 1)">+</button>
+
+      </div>
+      <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+    </div>
+
+      <div class="menu-item" data-item-name="Caesar Salad" data-item-price="49">
+        🥗 Caesar Salad - ₹49
+        <img src="https://cdn.loveandlemons.com/wp-content/uploads/2021/04/green-salad.jpg" alt="Fresh Caesar Salad">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Soft Drink" data-item-price="29">
+        🥤 Soft Drink - ₹29
+        <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:420,cw:1080,ch:1080,q:80,w:1080/aSKEwAj45HqsqPiVzP3edE.jpg" alt="Chilled Soft Drink">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" id="pizza-item" data-item-name="Pizza" data-item-price="69">
+        🍕 Pizza - ₹69
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Classic Cheese Pizza">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <h2 style="text-align: center; color: #ea3b05; margin-top: 40px;">Beverages & Snacks</h2>
+    <div class="menu-grid">
+      <div class="menu-item" data-item-name="Coffee" data-item-price="59">
+        ☕ Coffee - ₹59
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Hot Coffee">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" id="tea-item" data-item-name="Tea" data-item-price="39">
+        🍵 Tea - ₹39
+        <img src="https://www.savoryspiceshop.com/cdn/shop/products/chai-tea-1330_800x533.jpg?v=1663263734" alt="Warm Tea">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Juice" data-item-price="79">
+        🍹 Juice - ₹79
+        <img src="https://media.istockphoto.com/id/510565672/photo/cute-thinking-kid-girl-drinking-tasty-juice-in-street-restaurant.jpg?s=612x612&w=0&k=20&c=8GuV7UvI4CiDn1kf5XvPqE_7aWOatYYm7xBUMBEMxHQ=" alt="Fresh Juice">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Samosa" data-item-price="29">
+        🥟 Samosa - ₹29
+        <img src="https://www.foodnetwork.com/content/dam/images/food/fullset/2021/08/3/0/FN_SAMOSAS_W_TAMARIND_CHUTNEY_H_f_s4x3.jpg" alt="Crispy Samosa">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Momos" data-item-price="99">
+        🍜 Momos - ₹99
+        <img src="https://www.cookwithmanali.com/wp-content/uploads/2021/08/Schezwan-Paneer-Momos.jpg" alt="Steamed Momos">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Chowmin" data-item-price="119">
+        🍝 Chowmin - ₹119
+        <img src="https://img.freepik.com/premium-photo/woman-eating-spaghetti-with-chopsticks-bowl_1034910-78501.jpg" alt="Delicious Chowmin noodles">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Chat" data-item-price="69">
+        🥔 Chat - ₹69
+        <img src="https://img.restaurantguru.com/c95b-Restaurant-The-Chat-Cafe-food.jpg" alt="Spicy Aloo Chat">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+
+        <div class="menu-item" data-item-name="Burger" data-item-price="119">
+        🍔Burger - ₹119
+        <img src="https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/09/beef-burger.jpg?im=AspectCrop=(16,9);" alt="burger">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-item-name="Dahi Bara" data-item-price="79">
+        🥛 Dahi Bara - ₹79
+        <img src="https://www.shutterstock.com/image-photo/indian-street-food-thayir-vadai-600nw-2084848174.jpg" alt="Soft Dahi Bara">
+        <div class="quantity-controls">
+          <button onclick="updateQuantity(this, -1)">-</button>
+          <span class="quantity">0</span>
+          <button onclick="updateQuantity(this, 1)">+</button>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="order">
+    <h2>🛒 Your Cart</h2>
+    <div id="cart-items">
+      <p style='text-align: center;'>Your cart is empty.</p>
+    </div>
+    <p>Total: ₹<span id="cart-total">0</span></p>
+    <button style="padding: 12px 30px; background-color: #43a047; color: white; font-size: 16px; border: none; border-radius: 5px;" onclick="confirmOrder()">Confirm Order</button>
+  </div>
+
+  <div id="contact">
+    <h2>📞 Contact Us</h2>
+    <p>
+      Email: <a href="mailto:mealbite@example.com">mealbite@example.com</a><br>
+      Phone: <a href="tel:18000000200">1800-0000-200</a>
+    </p>
+  </div>
+
+  <footer>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 1200px; margin: auto;">
+      <div>
+        <h3>FOLLOW US</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/" target="_blank">📘 Facebook</a></li>
+          <li><a href="https://www.twitter.com/" target="_blank">🐦 Twitter</a></li>
+          <li><a href="https://www.instagram.com/" target="_blank">📸 Instagram</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank">📺 YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align: center; margin: 30px auto; max-width: 900px;">
+      Savor every bite—MEALBITE🍱 Junction brings fresh flavors right to you!
+      Experience quick service and delicious flavors with every order.<br>Your satisfaction is our top priority!
+    </p>
+    <p style="text-align: center;">Hurry up and place your order now!</p>
+    <div style="text-align: center; margin-top: 30px;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQZahmlLhkhDdeZHDdmc2RwIrGE8AbmVbXQ&s" width="120" alt="FSSAI Logo" style="background-color: white; border-radius: 6px; padding: 4px;">
+      <p>© 2025 MEALBITE🍱 Junction. All rights reserved.<br>FSSAI License Number: 1800-0000-200</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-container">
+    <button id="chatbot-toggle" onclick="toggleChatbot()">🤖 MEALBot</button>
+    <div id="chatbot-box" style="display: none;">
+      <div id="chatbot-header">
+        <span>🤖 MEALBITE Assistant</span>
+        <button onclick="toggleChatbot()">✖</button>
+      </div>
+      <div id="chatbot-messages"></div>
+      <input type="text" id="chatbot-input" placeholder="Type your message..." onkeypress="handleChatInput(event)">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
