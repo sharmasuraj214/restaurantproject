@@ -561,7 +561,6 @@ footer a:hover {
          width: 300px;
         bottom: 50px;
         right: 2vw;
-        left: auto; /* Center it horizontally */
   }
 
   #chatbot-header span { /* Adjusted header text size for mobile */
